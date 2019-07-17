@@ -1,0 +1,5 @@
+.video-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: var(--gap-md);
+}
