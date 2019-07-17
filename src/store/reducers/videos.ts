@@ -1,13 +1,24 @@
 import {Reducer} from 'redux';
-import {AddVideosAction} from '../actions/addVideos';
+import {ADD_VIDEOS, UPDATE_VIDEO_WITH_VIEWS, VideoActions} from '../actions/addVideos';
+import {Video} from '../model/video.model';
 
-const videos: Reducer<any, AddVideosAction> = (state = [], action: AddVideosAction) => {
+const initialState: Video[] = [];
+
+const videos: Reducer<Video[], VideoActions> = (state = initialState, action: VideoActions) => {
   switch (action.type) {
-    case 'ADD_VIDEOS':
+    case ADD_VIDEOS:
       return [
         ...state,
         ...action.payload,
       ];
+    case UPDATE_VIDEO_WITH_VIEWS:
+      // todo rifattorizzare con oggetto e non array in store
+      const indexVideoToUpdate = state.findIndex(v => v.id === action.payload.id);
+      const videoToUpdate: Video = JSON.parse(JSON.stringify(state[indexVideoToUpdate]));
+      videoToUpdate.views = action.payload.views;
+      const clonedState = JSON.parse(JSON.stringify(state));
+      clonedState[indexVideoToUpdate] = videoToUpdate;
+      return clonedState;
     default:
       return state;
   }

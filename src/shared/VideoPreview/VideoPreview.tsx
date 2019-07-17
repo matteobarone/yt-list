@@ -1,9 +1,11 @@
 import React, {PropsWithChildren} from 'react';
 import './VideoPreview.css';
+import {VideoImage} from '../VideoImage/VideoImage';
 
 interface VideoPreviewProps {
+  id: string
   title: string;
-  views: number;
+  views: string;
   preview?: string;
 }
 
@@ -11,7 +13,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = (props: PropsWithChildren<Vide
   return (
     <div className="video-preview">
       <div className="video-preview__preview">
-        {/* img */}
+        {props.preview && <VideoImage url={props.preview} alt={props.title}/>}
       </div>
       <h3>{props.title}</h3>
       <span>{props.views} views</span>
