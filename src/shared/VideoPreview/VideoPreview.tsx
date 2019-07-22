@@ -15,7 +15,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = (props: PropsWithChildren<Vide
       <div className="video-preview__preview">
         {props.preview && <VideoImage url={props.preview} alt={props.title}/>}
       </div>
-      <h3>{props.title}</h3>
+      <h5>{props.title}</h5>
       <span>{props.views} views</span>
     </div>
   )

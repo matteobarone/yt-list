@@ -1,5 +1,12 @@
 .video-list {
   display: flex;
   flex-flow: row wrap;
+  max-width: 600px;
   padding: var(--gap-md);
+  padding-top: calc(var(--gap-md) + var(--bar-size));
+  margin: 0 auto;
+}
+
+.video-list h3 {
+  padding-bottom: var(--gap-sm);
 }

@@ -21,7 +21,7 @@ export interface VideoStatistics {
   viewCount: string;
 }
 
-const formatNumber = (n: number) => new Intl.NumberFormat('it-IT').format(n);
+const formatNumber = (n: number) => n ? new Intl.NumberFormat('it-IT').format(n) : 'Unknown';
 
 export function createVideo(data: any = {}): Video {
   return {

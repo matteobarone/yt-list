@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--gap-md);
+  position: fixed;
+  width: 100%;
+  height: var(--bar-size);
+  background: rgba(255, 255, 255, .88);
+  z-index: 1;
+}
+
+.navigation a {
+  color: black;
+  font-size: .9em;
+  text-decoration: none;
+}
+
+.navigation a:hover, .navigation a.active {
+  text-decoration: underline;
+}
