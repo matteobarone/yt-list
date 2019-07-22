@@ -3,9 +3,9 @@ import {createVideo, createVideoStatistics, Video, VideoStatistics} from '../mod
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
-export function loadVideos(): any {
+export function loadVideos(options: {publishedAfter: string}): any {
   return (dispatch: any) =>
-    fetchVideos()
+    fetchVideos(options)
       .then((videos) => dispatch(addVideos(videos)))
       .then((res: AddVideosAction) => {
         const ids = res.payload.map(v => v.id).join(',');
@@ -25,8 +25,8 @@ export function loadVideos(): any {
       })
 }
 
-function fetchVideos(): Promise<Video[]> {
-  const api = `https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&maxResults=20&type=video&key=${API_KEY}`;
+function fetchVideos(options: {publishedAfter: string}): Promise<Video[]> {
+  const api = `https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&maxResults=20&type=video&key=${API_KEY}&publishedAfter=${options.publishedAfter}`;
   return fetch(api)
     .then(res => res.json())
     .then((data: any) => data.items.map((el: any) => createVideo(el)))

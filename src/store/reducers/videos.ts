@@ -8,7 +8,6 @@ const videos: Reducer<Video[], VideoActions> = (state = initialState, action: Vi
   switch (action.type) {
     case ADD_VIDEOS:
       return [
-        ...state,
         ...action.payload,
       ];
     case UPDATE_VIDEO_WITH_VIEWS:
